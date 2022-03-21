@@ -1,15 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "polaris.fullname" . }}
+  name: {{ include "polaris.fullname" . }}-cynosure
   labels:
     {{- include "polaris.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.cynosure.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - port: {{ .Values.cynosure.service.port }}
+      targetPort: cynosure 
       protocol: TCP
-      name: http
+      name: cynosure
+  selector:
+    {{- include "polaris.selectorLabels" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "polaris.fullname" . }}-companion
+  labels:
+    {{- include "polaris.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.companion.service.type }}
+  ports:
+    - port: {{ .Values.companion.service.port }}
+      targetPort: companion 
+      protocol: TCP
+      name: companion
   selector:
     {{- include "polaris.selectorLabels" . | nindent 4 }}

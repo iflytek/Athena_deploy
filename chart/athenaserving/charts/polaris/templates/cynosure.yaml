@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "polaris.fullname" . }}-companion
+  name: {{ include "polaris.fullname" . }}-cynosure
   labels:
     {{- include "polaris.labels" . | nindent 4 }}
 spec:
@@ -28,32 +28,37 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}-companion
+        - name: {{ .Chart.Name }}-cynosure
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.companion.image }}"
-          imagePullPolicy: {{ .Values.companion.pullPolicy }}
+          image: "{{ .Values.cynosure.image }}"
+          imagePullPolicy: {{ .Values.cynosure.pullPolicy }}
           ports:
-            - name: companion 
-              containerPort: {{.Values.companion.service.port }} 
+            - name: cynosure 
+              containerPort: {{.Values.cynosure.service.port }} 
               protocol: TCP
           livenessProbe:
             tcpSocket:
-              port: companion
+              port: cynosure
           readinessProbe:
             tcpSocket:
-              port: companion 
+              port: cynosure 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          args:
-            {{- toYaml .Values.companion.args | nindent 12 }}
           volumeMounts:
             - name: logs
               mountPath: /log/server
+            - name: cm
+              mountPath: /opt/server/cynosure/config/application.yml 
+
       volumes:
+        - name: cm
+          configMap:
+            name: {{ include "polaris.fullname" . }}-cynosure 
+            defaultMode: 0755
         - name: logs
           hostPath:
-            path: {{.Values.companion.log.hostPath}}
+            path: {{.Values.cynosure.log.hostPath}}
             type: DirectoryOrCreate
       {{- with .Values.nodeSelector }}
       nodeSelector:
