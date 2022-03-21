@@ -11,6 +11,9 @@ spec:
       targetPort: cynosure 
       protocol: TCP
       name: cynosure
+      {{- if (eq .Values.cynosure.service.type "NodePort") }}
+      nodePort: {{ .Values.cynosure.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "polaris.selectorLabels" . | nindent 4 }}
 ---

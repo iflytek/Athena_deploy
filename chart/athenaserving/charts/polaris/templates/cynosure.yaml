@@ -50,6 +50,7 @@ spec:
               mountPath: /log/server
             - name: cm
               mountPath: /opt/server/cynosure/config/application.yml 
+              subPath: application.yml
 
       volumes:
         - name: cm
