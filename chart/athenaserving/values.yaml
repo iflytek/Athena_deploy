@@ -132,7 +132,7 @@ mysql:
       ## @param primary.service.nodePort MySQL Primary K8s service node port
       ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
       ##
-      nodePort: "32306"
+      nodePort: "32406"
 
   secondary:
     service:

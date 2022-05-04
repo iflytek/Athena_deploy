@@ -8,7 +8,7 @@ replicaCount: 1
 cynosure:
   mysql:
     host: 172.16.59.17
-    port: 32306
+    port: 32406
     username: cynosure
     password: Y3lub3N1cmUK 
     database: cynosure
@@ -33,7 +33,6 @@ companion:
     - watchdog.sh
     - -h0.0.0.0
     - -p6868
-    - -z10.251.86.152:2181
     - -whttp://companion.xfyun.cn
 
 

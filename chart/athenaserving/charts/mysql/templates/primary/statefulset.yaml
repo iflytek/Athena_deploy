@@ -317,7 +317,7 @@ spec:
         {{- if or .Values.initdbScriptsConfigMap .Values.initdbScripts }}
         - name: custom-init-scripts
           configMap:
-            name: {{ include "mysql.initdbScriptsCM" . }}
+            name: {{.Release.Name}}-{{ include "mysql.initdbScriptsCM" . }}
         {{- end }}
         {{- if and .Values.auth.usePasswordFiles (not .Values.auth.customPasswordFiles) }}
         - name: mysql-credentials

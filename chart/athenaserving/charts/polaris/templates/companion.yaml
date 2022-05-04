@@ -47,6 +47,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           args:
             {{- toYaml .Values.companion.args | nindent 12 }}
+            - -z{{ .Release.Name }}-zookeeper:2181
           volumeMounts:
             - name: logs
               mountPath: /log/server

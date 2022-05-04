@@ -14,7 +14,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "managed-nfs-storage"
 
 ## @section Common parameters
 
@@ -142,9 +142,10 @@ auth:
 ##      echo "Do something."
 ##
 initdbScripts: {}
+
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
-initdbScriptsConfigMap: ""
+initdbScriptsConfigMap: "init-polaris-sql"
 
 ## @section MySQL Primary parameters
 
