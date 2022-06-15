@@ -161,7 +161,7 @@ autopurge:
   ## @param autopurge.purgeInterval The time interval (in hours) for which the purge task has to be triggered
   ## Set to a positive integer to enable the auto purging
   ##
-  purgeInterval: 0
+  purgeInterval: 1 
 ## @param logLevel Log level for the ZooKeeper server. ERROR by default
 ## Have in mind if you set it to INFO or WARN the ReadinessProve will produce a lot of logs
 ##
