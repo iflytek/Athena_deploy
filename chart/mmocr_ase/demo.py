@@ -7,7 +7,7 @@ img = base64.b64encode(image.read())
 
 
 
-url = "http://10.242.99.121:8889/mmocr"
+url = "http://10.246.209.185:8889/mmocr"
 method = "POST"
 headers = {"Content-Type":"application/json"}
 data = {

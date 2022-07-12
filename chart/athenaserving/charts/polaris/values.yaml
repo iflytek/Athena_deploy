@@ -33,7 +33,8 @@ companion:
     - watchdog.sh
     - -h0.0.0.0
     - -p6868
-    - -whttp://companion.xfyun.cn
+      #    - -whttp://companion.xfyun.cn
+    - -whttp://athena-polaris-cynosure:8099
 
 
 imagePullSecrets: []
