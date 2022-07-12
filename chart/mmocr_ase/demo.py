@@ -2,12 +2,12 @@ import requests
 import json
 import base64
 
-image = open("demo_text_recog.jpg","rb")
+image = open("demo_text_det.jpg","rb")
 img = base64.b64encode(image.read())
 
 
 
-url = "http://10.246.209.185:8889/mmocr"
+url = "http://172.16.59.17:30889/mmocr"
 method = "POST"
 headers = {"Content-Type":"application/json"}
 data = {
@@ -45,8 +45,10 @@ data = {
     }
 }
 
+# call the http api.
 resp = requests.post(url,headers=headers,data=json.dumps(data))
 
 print(resp.status_code)
 
-print(resp.content)
+result = resp.json()['payload']['boxes']['text']
+print(result)

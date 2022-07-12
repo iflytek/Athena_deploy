@@ -8,7 +8,7 @@ image:
   repository:  artifacts.iflytek.com/docker-private/atp/opensource/mmocr
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1"
+  tag: "v3.1"
 
 imagePullSecrets: []
 nameOverride: "mmocr-demo"
