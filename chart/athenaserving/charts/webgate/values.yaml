@@ -44,8 +44,9 @@ args:
  -  --version=v1
  -  --url=http://athena-polaris-companion:6868
 service:
-  type: ClusterIP
+  type: NodePort 
   port: 8889 
+  nodePort: 30889
 
 ingress:
   enabled: false

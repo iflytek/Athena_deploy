@@ -2,12 +2,13 @@ import requests
 import json
 import base64
 
-image = open("demo_text_recog.jpg","rb")
+image = open("demo_text_det.jpg","rb")
 img = base64.b64encode(image.read())
 
 
 
-url = "http://10.242.99.121:8889/mmocr"
+url = "http://172.16.59.17:30889/mmocr"
+url = "http://172.16.59.17:30889/v1/private/mmocr"
 method = "POST"
 headers = {"Content-Type":"application/json"}
 data = {
@@ -25,7 +26,7 @@ data = {
     },
     "parameter": {
         "mmocr": {
-            "category": "en_phfw_chapter",
+            "category": "ai_category",
             "application_mode": "common_gpu",
             "gpu_id": "first",
             "gpu_type": "T4G16",
@@ -45,8 +46,23 @@ data = {
     }
 }
 
+# call the http api.
 resp = requests.post(url,headers=headers,data=json.dumps(data))
 
 print(resp.status_code)
 
-print(resp.content)
+if resp.status_code != 200:
+
+    print(resp.json())
+
+result = resp.json()['payload']['boxes']['text']
+print("HTTP API response is : %s "% str(result))
+
+print("########################################")
+
+for box in result[0].get("result"):
+
+    msg = "MMocr Result: box located at {box}, box score is {box_score}.  Detected text is {text} , text  score is {text_score}..."
+    print(msg.format(**box))
+
+#
