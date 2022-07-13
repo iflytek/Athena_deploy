@@ -12,10 +12,10 @@
 ## Install 
 ```
 cd chart
-helm install athenaserving .  
+helm install athena . 
 
 ## 等待AthenaServing服务组件全部启动成功后
-helm install mmocr_ase .
+helm  install mmocr .
 ```
 
 
@@ -26,8 +26,7 @@ image = open("demo_text_det.jpg","rb")     #待检测的图片
 img = base64.b64encode(image.read())
 
 
-
-url = "http://172.16.59.17:30889/mmocr"      # 30889要与mmocr服务暴露的端口相同
+url = "http://172.16.59.17:30889/mmocr"    # url 可以是 hostIP:nodePort 也可以是 svcIP:svcPort   
 url = "http://172.16.59.17:30889/v1/private/mmocr"
 method = "POST"
 headers = {"Content-Type":"application/json"}
@@ -77,5 +76,10 @@ python demo.py
 ## 结果展示
 
 ```
-
+##################################
+MMocr Result: box located at [190, 37, 253, 31, 254, 46, 191, 52], box score is 0.9566415548324585.  Detected text is nboroughofs, text  score is 1.0...
+MMocr Result: box located at [253, 47, 257, 36, 287, 47, 282, 58], box score is 0.9649642705917358.  Detected text is fsouthw, text  score is 1.0...
+MMocr Result: box located at [157, 59, 188, 41, 194, 52, 163, 70], box score is 0.9521175622940063.  Detected text is londond, text  score is 0.9897959183673469...
+MMocr Result: box located at [280, 58, 286, 50, 306, 67, 300, 74], box score is 0.9397557377815247.  Detected text is thwark, text  score is 1.0...
+...
 ```
