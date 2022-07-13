@@ -8,6 +8,7 @@ img = base64.b64encode(image.read())
 
 
 url = "http://172.16.59.17:30889/mmocr"
+url = "http://172.16.59.17:30889/v1/private/mmocr"
 method = "POST"
 headers = {"Content-Type":"application/json"}
 data = {
@@ -25,7 +26,7 @@ data = {
     },
     "parameter": {
         "mmocr": {
-            "category": "en_phfw_chapter",
+            "category": "ai_category",
             "application_mode": "common_gpu",
             "gpu_id": "first",
             "gpu_type": "T4G16",
@@ -49,6 +50,10 @@ data = {
 resp = requests.post(url,headers=headers,data=json.dumps(data))
 
 print(resp.status_code)
+
+if resp.status_code != 200:
+
+    print(resp.json())
 
 result = resp.json()['payload']['boxes']['text']
 print(result)
