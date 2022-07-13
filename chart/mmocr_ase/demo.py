@@ -60,7 +60,7 @@ print("HTTP API response is : %s "% str(result))
 
 print("########################################")
 
-for box in result.get("result"):
+for box in result[0].get("result"):
 
     msg = "MMocr Result: box located at {box}, box score is {box_score}.  Detected text is {text} , text  score is {text_score}..."
     print(msg.format(**box))
