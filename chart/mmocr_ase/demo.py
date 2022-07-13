@@ -56,4 +56,13 @@ if resp.status_code != 200:
     print(resp.json())
 
 result = resp.json()['payload']['boxes']['text']
-print(result)
+print("HTTP API response is : %s "% str(result))
+
+print("########################################")
+
+for box in result.get("result"):
+
+    msg = "MMocr Result: box located at {box}, box score is {box_score}.  Detected text is {text} , text  score is {text_score}..."
+    print(msg.format(**box))
+
+#
