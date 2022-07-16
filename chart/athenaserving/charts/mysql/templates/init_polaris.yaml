@@ -40,7 +40,7 @@ data:
     -- Records of tb_cluster
     -- ----------------------------
     BEGIN;
-    INSERT INTO `tb_cluster` VALUES ('dd6b32bf527346adb8c3697762413044', 'test', 'http://athena-polaris-companion:6868', '2022-05-05 02:16:01', '2022-05-05 02:16:01', '3688919024172793856');
+    INSERT INTO `tb_cluster` VALUES ('dd6b32bf527346adb8c3697762413044', 'test', 'http://{{.Release.Name}}-polaris-companion:6868', '2022-05-05 02:16:01', '2022-05-05 02:16:01', '3688919024172793856');
     COMMIT;
 
     -- ----------------------------

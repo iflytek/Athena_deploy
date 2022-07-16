@@ -25,6 +25,15 @@ args:
  -  -u=http://athena-polaris-companion:6868
  -  -c=atmos.cfg
 
+
+# 配置中心
+cfg:
+  project: test-project
+  service: atmos 
+  version: 1.0.0 #not use
+  cluster: test-cluster
+
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false

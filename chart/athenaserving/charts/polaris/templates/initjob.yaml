@@ -23,4 +23,4 @@ spec:
       containers:
       - name: init-config 
         image: "public.ecr.aws/iflytek-open/athena-job:v1.0.0"
-        args: ["--password","123456"]
+        args: ["--password","123456", "--configAddr", "{{.Release.Name}}-polaris-cynosure:8099"]

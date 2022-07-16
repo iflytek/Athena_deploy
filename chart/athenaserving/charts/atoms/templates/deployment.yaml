@@ -37,7 +37,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            {{- toYaml .Values.args | nindent 12 }}
+            - /root/go/src/git.xfyun.cn/AIaaS/atmos/atmos
+            -  -m=1
+            -  -p={{.Values.cfg.project}}
+            -  -g={{.Values.cfg.cluster}}
+            -  -s={{.Values.cfg.service}}
+            -  -u=http://{{.Release.Name}}-polaris-companion:6868
+            -  -c=atmos.cfg
           ports:
             - name: tcp 
               containerPort: 9988 

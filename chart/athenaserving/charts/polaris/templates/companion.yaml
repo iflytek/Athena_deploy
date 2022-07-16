@@ -46,7 +46,12 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           args:
-            {{- toYaml .Values.companion.args | nindent 12 }}
+            - sh
+            - watchdog.sh
+            - -h0.0.0.0
+            - -p6868
+            #    - -whttp://companion.xfyun.cn
+            - -whttp://{{.Release.Name}}-polaris-cynosure:8099
             - -z{{ .Release.Name }}-zookeeper:2181
           volumeMounts:
             - name: logs
