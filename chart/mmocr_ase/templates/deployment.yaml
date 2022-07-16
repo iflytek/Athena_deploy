@@ -45,7 +45,6 @@ spec:
             -  -u=http://{{.Release.Name}}-polaris-companion:6868
             -  -p={{.Values.cfg.project}}
             -  -g={{.Values.cfg.cluster}}
-            {{- toYaml .Values.args | nindent 12 }}
           ports:
             - name: http
               containerPort: 5090 
