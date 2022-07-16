@@ -16,7 +16,7 @@ cynosure:
     port: 8099
     type: NodePort
     nodePort: 30428
-  image:  hub.iflytek.com/aiaas/cynosure:2.0.17
+  image:  public.ecr.aws/iflytek-open/cynosure:2.0.17
   pullPolicy: IfNotPresent
 companion:
   log:
@@ -24,7 +24,7 @@ companion:
   service:
     port: 6868 
     type: ClusterIP 
-  image:  hub.iflytek.com/aiaas/companion:2.0.3
+  image:  public.ecr.aws/iflytek-open/companion:2.0.3
   pullPolicy: IfNotPresent
   args:
     - sh
