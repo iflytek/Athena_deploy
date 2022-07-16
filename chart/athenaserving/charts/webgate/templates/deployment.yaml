@@ -34,6 +34,14 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
+            - /webgate/webgate-aipaas
+            -  --nativeBoot=false
+            -  --project={{.Values.cfg.project}}
+            -  --group={{.Values.cfg.cluster}}
+            -  --service={{.Values.cfg.service}}
+            -  --version={{.Values.cfg.version}}
+            -  --url=http://{{ .Release.Name}}-polaris-companion:6868
+          args:
             {{- toYaml .Values.args | nindent 12 }}
           ports:
             - name: http

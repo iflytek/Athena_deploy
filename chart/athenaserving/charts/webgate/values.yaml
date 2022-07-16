@@ -35,14 +35,13 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-args:
- - /webgate/webgate-aipaas
- -  --nativeBoot=false 
- -  --project=test-project
- -  --group=test-cluster
- -  --service=webgate
- -  --version=v1
- -  --url=http://athena-polaris-companion:6868
+
+# 配置中心
+cfg:
+  project: test-project
+  service: webgate
+  version: v1
+  cluster: test-cluster
 service:
   type: NodePort 
   port: 8889 

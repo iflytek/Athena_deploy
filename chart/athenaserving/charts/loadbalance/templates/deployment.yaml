@@ -34,7 +34,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            {{- toYaml .Values.args | nindent 12 }}
+            - ./lbv2
+            -  -m=1
+            -  -c=lbv2.toml
+            -  -p={{.Values.cfg.project}}
+            -  -s={{.Values.cfg.service}}
+            -  -g={{.Values.cfg.cluster}}
+            -  -u=http://{{.Release.Name}}-polaris-companion:6868
           ports:
             - name: tcp
               containerPort: 9989
