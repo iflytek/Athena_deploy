@@ -7,8 +7,6 @@ replicaCount: 1
 
 cynosure:
   mysql:
-    host: 172.16.59.17
-    port: 32406
     username: cynosure
     password: Y3lub3N1cmUK 
     database: cynosure
