@@ -1,16 +1,28 @@
 import requests
 import json
 import base64
+import socket
 
-image = open("demo_text_det.jpg","rb")
+image = open("demo_text_det.jpg", "rb")
 img = base64.b64encode(image.read())
 
+# 获取本机计算机名称
+hostname = socket.gethostname()
+# 获取本机ip
+ip = socket.gethostbyname(hostname)
+print("your local ip address is %s" % ip)
+
+image = open("demo_text_det.jpg", "rb")
+img = base64.b64encode(image.read())
+
+# 这里url为 webgate 网关的 svc，这里使用的是nodePort ,也可以调用svc:svcPort
+url = "http://{ip}:30889/mmocr"
+url = "http://{ip}:30889/v1/private/mmocr"
+url = url.format(ip=ip)
 
 
-url = "http://172.16.59.17:30889/mmocr"
-url = "http://172.16.59.17:30889/v1/private/mmocr"
 method = "POST"
-headers = {"Content-Type":"application/json"}
+headers = {"Content-Type": "application/json"}
 data = {
     "header": {
         "app_id": "123456",
@@ -47,21 +59,19 @@ data = {
 }
 
 # call the http api.
-resp = requests.post(url,headers=headers,data=json.dumps(data))
+resp = requests.post(url, headers=headers, data=json.dumps(data))
 
 print(resp.status_code)
 
 if resp.status_code != 200:
-
     print(resp.json())
 
 result = resp.json()['payload']['boxes']['text']
-print("HTTP API response is : %s "% str(result))
+print("HTTP API response is : %s " % str(result))
 
 print("########################################")
 
 for box in result[0].get("result"):
-
     msg = "MMocr Result: box located at {box}, box score is {box_score}.  Detected text is {text} , text  score is {text_score}..."
     print(msg.format(**box))
 
