@@ -73,6 +73,8 @@ data = {
 python demo.py
 ```
 
+## 被检测图片
+![img](chart/mmocr_ase/demo_text_det.jpg)
 ## 结果展示
 
 ```
